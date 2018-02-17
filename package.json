@@ -5,18 +5,22 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run watch-server",
-    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
+    "watch-server": "nodemon --watch 'app/**/*' -e ts,tsx --exec 'ts-node' ./app/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jeason",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^5.0.0",
     "koa": "^2.5.0",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "concurrency-logger": "^2.0.1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.44",
     "@types/koa-router": "^7.0.27",
+    "@types/node": "^9.4.6",
+    "@types/dotenv": "^4.0.2",
     "nodemon": "^1.15.0",
     "ts-node": "^4.1.0",
     "typescript": "^2.7.2"
