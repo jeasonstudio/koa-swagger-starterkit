@@ -1,46 +1,5 @@
 import { Controller, Param, Body, Get, Post, Delete } from 'routing-controllers'
 
-/**
- * @swagger
- * tags:
- * - name: pet
- *   description: Everything about your Pets
- *   externalDocs:
- *     description: Find out more
- *     url: http://swagger.io
- * definitions:
- *   Pet:
- *     type: object
- *     required:
- *     - name
- *     - photoUrls
- *     properties:
- *       id:
- *         type: integer
- *         format: int64
- *       name:
- *         type: string
- *         example: doggie
- *       photoUrls:
- *         type: array
- *         xml:
- *           name: photoUrl
- *           wrapped: true
- *         items:
- *           type: string
- *       tags:
- *         type: array
- *         xml:
- *           name: tag
- *           wrapped: true
- *       status:
- *         type: string
- *         description: pet status in the store
- *         enum:
- *         - available
- *         - pending
- *         - sold
- */
 @Controller()
 export class PetController {
   /**

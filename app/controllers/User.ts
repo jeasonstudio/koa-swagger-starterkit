@@ -1,14 +1,5 @@
 import { Controller, Param, Body, Get, Post, Put, Patch, Delete } from 'routing-controllers'
 
-/**
- * @swagger
- * tags:
- * - name: user
- *   description: Operations about user
- *   externalDocs:
- *     description: Find out more about our store
- *     url: http://swagger.io
- */
 @Controller()
 export class UserController {
 
