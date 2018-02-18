@@ -3,6 +3,7 @@ import * as path from 'path'
 import {
   Info, ExternalDocs, Schema, BodyParameter, QueryParameter, Security, Tag, Spec,
 } from 'swagger-schema-official'
+import config from '../config'
 
 type SwaggerSpecWithoutPath = {
   info: Info,
@@ -207,13 +208,17 @@ const swaggerInfo: Info = {
   },
 }
 
+const host: string = config.NODE_ENV === 'development'
+  ? `localhost:${config.PORT || 3000}`
+  : config.PUBLIC_URL
+
 // see this specification document before edit
 // https://swagger.io/specification/
 const options: SwaggerDocOptions = {
   // options for the swagger docs
   swaggerDefinition: {
+    host,
     info: swaggerInfo,
-    host: 'foo.bar.com',
     basePath: '/',
     tags: swaggerTags,
     schemes: ['http'],
