@@ -11,16 +11,20 @@
   "author": "Jeason",
   "license": "MIT",
   "dependencies": {
+    "concurrency-logger": "^2.0.1",
     "dotenv": "^5.0.0",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
-    "concurrency-logger": "^2.0.1"
+    "koa-static": "^4.0.2",
+    "swagger-jsdoc": "^1.9.7",
+    "swagger-ui-dist": "^3.10.0"
   },
   "devDependencies": {
+    "@types/dotenv": "^4.0.2",
     "@types/koa": "^2.0.44",
     "@types/koa-router": "^7.0.27",
     "@types/node": "^9.4.6",
-    "@types/dotenv": "^4.0.2",
+    "@types/swagger-jsdoc": "0.0.2",
     "nodemon": "^1.15.0",
     "ts-node": "^4.1.0",
     "typescript": "^2.7.2"
