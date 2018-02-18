@@ -1,27 +1,26 @@
-import { Controller, Get } from 'routing-controllers'
 import * as swaggerJsDoc from 'swagger-jsdoc'
 import * as Swagger from 'swagger-schema-official'
 import * as path from 'path'
 
 type SwaggerDefinition = {
-  info: Swagger.Info
-  host?: string
-  basePath?: string
-  externalDocs?: Swagger.ExternalDocs
-  schemes?: string[]
-  consumes?: string[]
-  produces?: string[]
-  definitions?: {[definitionsName: string]: Swagger.Schema }
-  parameters?: {[parameterName: string]: Swagger.BodyParameter|Swagger.QueryParameter}
-  responses?: {[responseName: string]: Response }
-  security?: Array<{[securityDefinitionName: string]: string[]}>
-  securityDefinitions?: { [securityDefinitionName: string]: Swagger.Security}
-  tags?: Swagger.Tag[]
+  info: Swagger.Info,
+  host?: string,
+  basePath?: string,
+  externalDocs?: Swagger.ExternalDocs,
+  schemes?: string[],
+  consumes?: string[],
+  produces?: string[],
+  definitions?: {[definitionsName: string]: Swagger.Schema },
+  parameters?: {[parameterName: string]: Swagger.BodyParameter|Swagger.QueryParameter},
+  responses?: {[responseName: string]: Response },
+  security?: {[securityDefinitionName: string]: string[]}[],
+  securityDefinitions?: { [securityDefinitionName: string]: Swagger.Security},
+  tags?: Swagger.Tag[],
 }
 
 type SwaggerDocOptions = {
-  swaggerDefinition: SwaggerDefinition
-  apis: string[]
+  swaggerDefinition: SwaggerDefinition,
+  apis: string[],
 }
 
 // see this specification document before edit

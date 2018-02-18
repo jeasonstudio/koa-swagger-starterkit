@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run watch-server",
+    "lint": "tslint ./**/*.ts -t verbose",
     "watch-server": "nodemon --watch 'app/**/*' -e ts,tsx --exec 'ts-node' ./app/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +22,9 @@
     "routing-controllers": "^0.7.6",
     "swagger-injector": "^4.0.0",
     "swagger-jsdoc": "^1.9.7",
-    "swagger-tools": "^0.10.3"
+    "swagger-tools": "^0.10.3",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.6.0"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.2",

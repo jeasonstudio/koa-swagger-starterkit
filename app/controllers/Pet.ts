@@ -1,4 +1,4 @@
-import { Controller, Param, Body, Get, Post, Put, Patch, Delete } from 'routing-controllers'
+import { Controller, Param, Body, Get, Post, Delete } from 'routing-controllers'
 
 /**
  * @swagger
@@ -68,23 +68,24 @@ export class PetController {
    */
   @Post('/pet')
   post(@Body() pet: any) {
+    console.log(pet)
     return {
-      "id": 0,
-      "category": {
-        "id": 0,
-        "name": "string"
+      id: 0,
+      category: {
+        id: 0,
+        name: 'string',
       },
-      "name": "doggie",
-      "photoUrls": [
-        "string"
+      name: 'doggie',
+      photoUrls: [
+        'string',
       ],
-      "tags": [
+      tags: [
         {
-          "id": 0,
-          "name": "string"
-        }
+          id: 0,
+          name: 'string',
+        },
       ],
-      "status": "available"
+      status: 'available',
     }
   }
 
@@ -113,22 +114,22 @@ export class PetController {
   @Get('/pet/:petId')
   getOneById(@Param('petId') petId: number) {
     return {
-      "id": petId,
-      "category": {
-        "id": 0,
-        "name": "string"
+      id: petId,
+      category: {
+        id: 0,
+        name: 'string',
       },
-      "name": "doggie",
-      "photoUrls": [
-        "string"
+      name: 'doggie',
+      photoUrls: [
+        'string',
       ],
-      "tags": [
+      tags: [
         {
-          "id": 0,
-          "name": "string"
-        }
+          id: 0,
+          name: 'string',
+        },
       ],
-      "status": "available"
+      status: 'available',
     }
   }
 
@@ -159,6 +160,6 @@ export class PetController {
    */
   @Delete('/pet/:petId')
   deleteById(@Param('petId') petId: number) {
-    return ''
+    return petId
   }
 }

@@ -1,19 +1,19 @@
 import './types'
-import "reflect-metadata"
+import 'reflect-metadata'
 import * as Koa from 'koa'
 import * as bodyParser from 'koa-bodyparser'
 import * as path from 'path'
 import * as koaStatic from 'koa-static'
-import createLogger from 'concurrency-logger'
+import concurrencyLogger from 'concurrency-logger'
 import { createKoaServer } from 'routing-controllers'
 import * as swaggerInjector from 'swagger-injector'
 import { swaggerSpec } from './swagger'
 import {
-  UserController, PetController
+  UserController, PetController,
 } from './controllers'
 
 import config from '../config'
-const serverPort: number = parseInt(config.PORT) || 3000
+const serverPort: number = parseInt(config.PORT, 10) || 3000
 
 // create koa server
 const app: Koa = createKoaServer({
@@ -28,7 +28,7 @@ const app: Koa = createKoaServer({
 // use middlewares
 app.use(bodyParser())
 app.use(koaStatic(path.resolve(__dirname, '../static')))
-app.use(createLogger({ timestamp: true }))
+app.use(concurrencyLogger({ timestamp: true }))
 
 // swagger-ui documents
 // see more in `./types.ts`
