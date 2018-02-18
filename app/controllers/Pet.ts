@@ -18,8 +18,6 @@ import { Controller, Param, Body, Get, Post, Put, Patch, Delete } from 'routing-
  *       id:
  *         type: integer
  *         format: int64
- *       category:
- *         $ref: '#/definitions/Category'
  *       name:
  *         type: string
  *         example: doggie
@@ -35,8 +33,6 @@ import { Controller, Param, Body, Get, Post, Put, Patch, Delete } from 'routing-
  *         xml:
  *           name: tag
  *           wrapped: true
- *         items:
- *           $ref: '#/definitions/Tag'
  *       status:
  *         type: string
  *         description: pet status in the store

@@ -1,8 +1,9 @@
+import { Controller, Get } from 'routing-controllers'
 import * as swaggerJsDoc from 'swagger-jsdoc'
 import * as Swagger from 'swagger-schema-official'
 import * as path from 'path'
 
-interface SwaggerDefinition {
+type SwaggerDefinition = {
   info: Swagger.Info
   host?: string
   basePath?: string
@@ -18,7 +19,7 @@ interface SwaggerDefinition {
   tags?: Swagger.Tag[]
 }
 
-interface SwaggerDocOptions {
+type SwaggerDocOptions = {
   swaggerDefinition: SwaggerDefinition
   apis: string[]
 }
@@ -46,7 +47,6 @@ const options: SwaggerDocOptions = {
   },
   // path to the API documents
   apis: [
-    path.resolve(__dirname, './router.ts'),
     path.resolve(__dirname, './controllers/*.ts'),
   ],
 }
