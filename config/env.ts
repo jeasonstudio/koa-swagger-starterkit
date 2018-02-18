@@ -6,7 +6,7 @@ import * as fs from 'fs'
 const NODE_ENV: string = process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 if (!NODE_ENV) {
   throw new Error(
-    'The NODE_ENV environment variable is required but was not specified.'
+    'The NODE_ENV environment variable is required but was not specified.',
   )
 }
 
