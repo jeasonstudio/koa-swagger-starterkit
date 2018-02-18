@@ -5,6 +5,8 @@
     "noImplicitAny": true,
     "outDir": "./dist",
     "allowJs": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "sourceMap": true
   },
   "include": [

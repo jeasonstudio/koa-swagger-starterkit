@@ -1,3 +1,4 @@
+import { Controller, Get } from 'routing-controllers'
 import * as swaggerJsDoc from 'swagger-jsdoc'
 import * as Swagger from 'swagger-schema-official'
 import * as path from 'path'
@@ -46,10 +47,17 @@ const options: SwaggerDocOptions = {
   },
   // path to the API documents
   apis: [
-    path.resolve(__dirname, './router.ts'),
-    path.resolve(__dirname, './controllers/*.ts'),
+    path.resolve(__dirname, './*.ts'),
   ],
 }
 
 // initialize swagger-jsdoc
-export const swaggerSpec: Swagger.Spec = swaggerJsDoc(options)
+const swaggerSpec: Swagger.Spec = swaggerJsDoc(options)
+
+@Controller()
+export class SwaggerController {
+  @Get('/swagger-json')
+  getSwaggerSpec() {
+    return swaggerSpec
+  }
+}
