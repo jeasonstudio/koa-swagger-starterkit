@@ -1,13 +1,13 @@
 declare module 'concurrency-logger'
 declare module 'swagger-jsdoc'
 
-declare type swaggerInjectorAuth = {
+type swaggerInjectorAuth = {
   sources: string[],       // Accepted sources of auth
   key: boolean,            // Key for the auth
   value: boolean,          // Value for the auth
 }
 
-declare type swaggerInjectorOptions = {
+type swaggerInjectorOptions = {
   path?: string,           // Path to swagger file
   swagger: any,            // swagger json. If not set, it is read from the `path` file
   prefix?: string,         // Prefix applied to all routes

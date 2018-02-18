@@ -8,20 +8,14 @@ import concurrencyLogger from 'concurrency-logger'
 import { createKoaServer } from 'routing-controllers'
 import * as swaggerInjector from 'swagger-injector'
 import { swaggerSpec } from './swagger'
-import {
-  UserController, PetController,
-} from './controllers'
 
 import config from '../config'
 const serverPort: number = parseInt(config.PORT, 10) || 3000
 
 // create koa server
 const app: Koa = createKoaServer({
-  controllers: [
-    UserController,
-    PetController,
-  ],
-  middlewares: [],
+  controllers: [path.resolve(__dirname, './controllers/*.ts')],
+  middlewares: [path.resolve(__dirname, './middlewares/*.ts')],
   interceptors: [],
 })
 
