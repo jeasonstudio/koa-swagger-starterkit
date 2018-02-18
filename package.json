@@ -1,6 +1,12 @@
 {
   "name": "koa-swagger-starterkit",
   "version": "1.0.0",
+  "private": true,
+  "engineStrict": true,
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "app/index.ts",
   "description": "Starter kit of koajs, swagger, typescript to create the best RESTful nodejs server.",
   "keywords": [
     "koajs",
