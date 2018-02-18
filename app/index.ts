@@ -1,4 +1,5 @@
 import * as Koa from 'koa'
+import './types'
 import createLogger from 'concurrency-logger'
 // import * as koaStatic from 'koa-static'
 // import { absolutePath, SwaggerUIBundle } from 'swagger-ui-dist'
@@ -6,7 +7,7 @@ import createLogger from 'concurrency-logger'
 import config from '../config'
 import router from './router'
 
-const app = new Koa()
+const app: Koa = new Koa()
 
 app.use(createLogger({ timestamp: true }))
 

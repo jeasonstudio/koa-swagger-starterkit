@@ -4,9 +4,11 @@
     "target": "es2017",
     "noImplicitAny": true,
     "outDir": "./dist",
+    "allowJs": false,
     "sourceMap": true
   },
   "include": [
-    "./app/**/*"
+    "./app/**/*",
+    "./config/**/*"
   ]
 }
