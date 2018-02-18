@@ -196,16 +196,12 @@ const swaggerDefinition: {
   },
 }
 
-const { name: title, version, description } = require('../package.json')
+const { name: title, version, description, author: contact } = require('../package.json')
 const swaggerInfo: Info = {
   title,
   version,
   description,
-  contact: {
-    name: 'Jeason',
-    email: 'me@jeasonstudio.cn',
-    url: 'https://github.com/jeasonstudio',
-  },
+  contact,
   license: {
     name: 'MIT',
   },

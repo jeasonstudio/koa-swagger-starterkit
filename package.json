@@ -1,15 +1,24 @@
 {
-  "name": "koa-ts-swagger",
+  "name": "koa-swagger-starterkit",
   "version": "1.0.0",
-  "description": "koa-ts-swagger-starter",
-  "main": "index.js",
+  "description": "Starter kit of koajs, swagger, typescript to create the best RESTful server.",
+  "keywords": [
+    "koajs",
+    "typescript",
+    "swagger",
+    "starter"
+  ],
   "scripts": {
     "start": "npm run watch-server",
     "lint": "tslint ./**/*.ts -t verbose",
     "watch-server": "nodemon --watch 'app/**/*' -e ts,tsx --exec 'ts-node' ./app/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeason",
+  "author": {
+    "name": "Jeason",
+    "email": "me@jeasonstudio.cn",
+    "url": "https://github.com/jeasonstudio"
+  },
   "license": "MIT",
   "dependencies": {
     "concurrency-logger": "^2.0.1",
@@ -22,9 +31,7 @@
     "routing-controllers": "^0.7.6",
     "swagger-injector": "^4.0.0",
     "swagger-jsdoc": "^1.9.7",
-    "swagger-tools": "^0.10.3",
-    "tslint": "^5.9.1",
-    "tslint-config-airbnb": "^5.6.0"
+    "swagger-tools": "^0.10.3"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.2",
@@ -35,6 +42,8 @@
     "@types/swagger-schema-official": "^2.0.9",
     "nodemon": "^1.15.0",
     "ts-node": "^4.1.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.6.0"
   }
 }
