@@ -1,5 +1,6 @@
 declare module 'concurrency-logger'
 declare module 'swagger-jsdoc'
+declare module 'koa2-connect'
 
 type swaggerInjectorAuth = {
   sources: string[],       // Accepted sources of auth
