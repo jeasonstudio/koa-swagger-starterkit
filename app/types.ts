@@ -1,2 +1,2 @@
 declare module 'concurrency-logger'
-declare module 'swagger-jsdoc'
+declare module "swagger-jsdoc"

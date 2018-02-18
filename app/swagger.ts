@@ -6,7 +6,6 @@ interface SwaggerDefinition {
   info: Swagger.Info
   host?: string
   basePath?: string
-
   externalDocs?: Swagger.ExternalDocs
   schemes?: string[]
   consumes?: string[]
@@ -32,12 +31,20 @@ const options: SwaggerDocOptions = {
     info: {
       title: 'koa-ts-swagger',
       version: '2.0.0',
-      description: 'Demonstrating how to describe a RESTful API with Swagger',
+      description: 'Demonstrating how to describe a RESTful API with Swagger & Koa',
+      contact: {
+        name: 'Jeason',
+        email: 'me@jeasonstudio.cn',
+        url: 'https://github.com/jeasonstudio',
+      },
+      license: {
+        name: 'MIT',
+      },
     },
     host: 'foo.bar.com',
     basePath: '/api',
   },
-  // path to the API docs
+  // path to the API documents
   apis: [
     path.resolve(__dirname, './router.ts'),
     path.resolve(__dirname, './controllers/*.ts'),
@@ -46,3 +53,4 @@ const options: SwaggerDocOptions = {
 
 // initialize swagger-jsdoc
 export const swaggerSpec: Swagger.Spec = swaggerJsDoc(options)
+console.log(swaggerSpec)
