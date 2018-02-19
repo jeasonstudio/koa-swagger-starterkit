@@ -1,4 +1,3 @@
-import './types'
 import 'reflect-metadata'
 import * as Koa from 'koa'
 import * as koaBodyParser from 'koa-bodyparser'
@@ -14,7 +13,7 @@ import * as swagger2 from 'swagger2'
 import { ui, validate } from 'swagger2-koa'
 import config from '../config'
 
-const { SERVER_PORT, SERVER_HOST } = config
+const { SERVER_PORT, SERVER_HOST, SWAGGER_UI } = config
 
 // Create koa server
 const app: Koa = createKoaServer({
@@ -35,12 +34,13 @@ if (!swagger2.validateDocument(swaggerSpec)) {
 // Use koa2 middlewares
 app.use(
   koaConvert(koaCors({
+    // Settings about CORS
     // Configures the Access-Control-Allow-Origin CORS header.
     origin: true,
     // Set to true to pass the header, otherwise it is omitted.
     credentials: true,
     // Configures the Access-Control-Allow-Methods CORS header.
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'DELETE'],
   })),
 )
 
@@ -54,9 +54,12 @@ app.use(koaBodyParser())
 // Http logger middleware
 app.use(concurrencyLogger({ timestamp: true }))
 
-// Use swagger-ui middleware
-// ui(swaggerSpec, pathRoot = "/swagger", skipPaths = ['/swagger/v1'])
-app.use(ui(swaggerSpec, '/swagger'))
+// Only show documents under development env
+if (SWAGGER_UI === 'true') {
+  // Use swagger-ui middleware
+  // ui(swaggerSpec, pathRoot = "/swagger", skipPaths = ['/swagger/v1'])
+  app.use(ui(swaggerSpec, '/swagger'))
+}
 
 // Use validate middleware
 // If the request body does not validate, an HTTP 400 is returned to the client.

@@ -1,5 +1,6 @@
 import { Controller, Param, Body, Get, Post, Delete, OnUndefined } from 'routing-controllers'
 import { NotFoundError } from './Error'
+import { ID, Pet } from '../types'
 
 @Controller('/pet')
 export class PetController {
@@ -23,12 +24,45 @@ export class PetController {
    *       schema:
    *         $ref: '#/definitions/Pet'
    *     responses:
-   *       405:
-   *         description: Invalid input
+   *       200:
+   *         description: Success post new pet
+   *         schema:
+   *           type: integer
+   *           format: int64
    */
   @Post('')
-  post(@Body() pet: any) {
-    return pet
+  post(@Body() pet: Pet): ID {
+    if (!pet) throw 'error'
+    const petId = 1
+    return petId
+  }
+
+  /**
+   * @swagger
+   * /pet:
+   *   get:
+   *     tags:
+   *     - pet
+   *     summary: Get all pets
+   *     produces:
+   *     - application/json
+   *     responses:
+   *       200:
+   *         description: Success post new pet
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/Pet'
+   */
+  @Get('')
+  getPets(): Pet[] {
+    return [{
+      name: 'aa',
+      photoUrls: ['111'],
+    }, {
+      name: 'bb',
+      photoUrls: ['222'],
+    }]
   }
 
   /**
@@ -55,7 +89,7 @@ export class PetController {
    */
   @Get('/:petId')
   @OnUndefined(NotFoundError)
-  getOneById(@Param('petId') petId: number) {
+  getOneById(@Param('petId') petId: ID): Pet {
     return {
       id: petId,
       category: {
@@ -74,7 +108,6 @@ export class PetController {
       ],
       status: 'available',
     }
-    // return petId
   }
 
   /**
@@ -88,10 +121,6 @@ export class PetController {
    *     produces:
    *     - application/json
    *     parameters:
-   *     - name: api_key
-   *       in: header
-   *       required: false
-   *       type: string
    *     - name: petId
    *       in: path
    *       description: Pet id to delete
@@ -99,12 +128,14 @@ export class PetController {
    *       type: integer
    *       format: int64
    *     responses:
+   *       200:
+   *         description: Success
    *       400:
    *         description: Invalid ID supplied
    */
   @Delete('/:petId')
-  @OnUndefined(204)
-  deleteById(@Param('petId') petId: number) {
-    return petId
+  deleteById(@Param('petId') petId: ID) {
+    console.log('Delete pet', petId)
+    return ''
   }
 }

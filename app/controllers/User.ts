@@ -20,16 +20,18 @@ export class UserController {
 
   @Put('/users/:id')
   put(@Param('id') id: number, @Body() user: any) {
-    return 'Updating a user...'
+    console.log(user)
+    return 'Updating a user...' + id
   }
 
   @Patch('/users/:id')
   patch(@Param('id') id: number, @Body() user: any) {
-    return 'Updating a user...'
+    console.log(user)
+    return 'Updating a user...' + id
   }
 
   @Delete('/users/:id')
   remove(@Param('id') id: number) {
-    return 'Removing user...'
+    return 'Removing user...' + id
   }
 }
