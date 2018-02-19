@@ -15,9 +15,11 @@
     "starter"
   ],
   "scripts": {
-    "start": "npm run lint && npm run watch-server",
+    "start": "npm run lint && npm run inspect:watch",
     "lint": "tslint ./**/*.ts -t verbose",
-    "watch-server": "cross-env NODE_ENV=development nodemon --watch 'app/**/*' -e ts,tsx --exec 'ts-node' --inspect ./app/index.ts",
+    "inspect:watch": "cross-env NODE_ENV=development nodemon -w './' -e ts,tsx --exec 'ts-node' --inspect app/index.ts",
+    "inspect:brk": "cross-env NODE_ENV=development nodemon -w './' -e ts,tsx --exec 'ts-node' --inspect-brk app/index.ts",
+    "production": "cross-env NODE_ENV=production ts-node app/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {

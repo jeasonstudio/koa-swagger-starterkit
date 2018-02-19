@@ -54,7 +54,6 @@ export class PetController {
    */
   @Get('/pet/:petId')
   getOneById(@Param('petId') petId: number) {
-    console.log(petId)
     return {
       id: petId,
       category: {
