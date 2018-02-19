@@ -9,6 +9,7 @@ Starter kit of koajs, swagger, typescript to create the best RESTful nodejs serv
 + This may not be true, do not hold too much hope. Lol.
 ```
 
+<!--npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git-->
 ## Todos
 - [x] 搭建 `koajs@2` 服务环境
 - [x] 使用 `typescript` 以获得静态类型支持
