@@ -8,11 +8,8 @@
       "type": "node",
       "request": "launch",
       "name": "Nodemon Server",
-      "runtimeExecutable": "nodemon",
       "restart": true,
-      "env": {
-        "NODE_ENV": "development"
-      },
+      "stopOnEntry": false,
       "args": [
         "--watch",
         "app/**/*",
@@ -21,9 +18,27 @@
         "--exec",
         "ts-node"
       ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
       "protocol": "inspector",
       "console": "integratedTerminal",
       "program": "${workspaceRoot}/app/index.ts"
+    },
+    {
+      "name": "Attach Nodemon",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "restart": true,
+      "localRoot": "${workspaceRoot}"
     }
   ]
 }

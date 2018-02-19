@@ -17,7 +17,7 @@
   "scripts": {
     "start": "npm run lint && npm run watch-server",
     "lint": "tslint ./**/*.ts -t verbose",
-    "watch-server": "cross-env NODE_ENV=development nodemon --watch 'app/**/*' -e ts,tsx --exec 'ts-node' ./app/index.ts",
+    "watch-server": "cross-env NODE_ENV=development nodemon --watch 'app/**/*' -e ts,tsx --exec 'ts-node' --inspect ./app/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -43,7 +43,6 @@
     "swagger2-koa": "0.0.43"
   },
   "devDependencies": {
-    "@types/chalk": "^2.2.0",
     "@types/dotenv": "^4.0.2",
     "@types/koa": "^2.0.44",
     "@types/koa-bodyparser": "^4.2.0",
