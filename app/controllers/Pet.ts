@@ -1,6 +1,7 @@
-import { Controller, Param, Body, Get, Post, Delete } from 'routing-controllers'
+import { Controller, Param, Body, Get, Post, Delete, OnUndefined } from 'routing-controllers'
+import { NotFoundError } from './Error'
 
-@Controller()
+@Controller('/pet')
 export class PetController {
   /**
    * @swagger
@@ -25,7 +26,7 @@ export class PetController {
    *       405:
    *         description: Invalid input
    */
-  @Post('/pet')
+  @Post('')
   post(@Body() pet: any) {
     return pet
   }
@@ -52,7 +53,8 @@ export class PetController {
    *         schema:
    *           $ref: '#/definitions/Pet'
    */
-  @Get('/pet/:petId')
+  @Get('/:petId')
+  @OnUndefined(NotFoundError)
   getOneById(@Param('petId') petId: number) {
     return {
       id: petId,
@@ -100,7 +102,8 @@ export class PetController {
    *       400:
    *         description: Invalid ID supplied
    */
-  @Delete('/pet/:petId')
+  @Delete('/:petId')
+  @OnUndefined(204)
   deleteById(@Param('petId') petId: number) {
     return petId
   }

@@ -18,6 +18,7 @@ const { SERVER_PORT, SERVER_HOST } = config
 
 // Create koa server
 const app: Koa = createKoaServer({
+  // routePrefix: '/v1',
   controllers: [path.resolve(__dirname, './controllers/*.ts')],
   middlewares: [path.resolve(__dirname, './middlewares/*.ts')],
   interceptors: [],
