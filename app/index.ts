@@ -43,24 +43,32 @@ app.use(
   })),
 )
 
+// Serving static file such as `fe-achive`
+// Now we create the httpServer for `../static`
+app.use(koaStatic(path.resolve(__dirname, '../static')))
+
 // About koa-bodyparser: https://www.npmjs.com/package/koa-bodyparser
 app.use(koaBodyParser())
-
-app.use(koaStatic(path.resolve(__dirname, '../static')))
 
 // Http logger middleware
 app.use(concurrencyLogger({ timestamp: true }))
 
+// Use swagger-ui middleware
+// ui(swaggerSpec, pathRoot = "/swagger", skipPaths = ['/swagger/v1'])
 app.use(ui(swaggerSpec, '/swagger'))
 
+// Use validate middleware
+// If the request body does not validate, an HTTP 400 is returned to the client.
+// If the response body does not validate, an HTTP 500 is returned to the client.
 app.use(validate(swaggerSpec))
 
-// app.listen(serverPort)
-// console.log(`Server running on port ${serverPort}`)
+// See: https://github.com/PabloSichert/concurrency-logger/blob/v2.0.1/src/index.js#L324
+// Let app.onerror event do nothing:
+//  - https://github.com/koajs/koa/blob/2.4.1/lib/application.js#L128
+//  - https://github.com/koajs/koa/blob/2.4.1/lib/application.js#L187
+app.on('error', () => {})
 
-// const { SERVER_PORT, SERVER_HOST } = config
-
-
+// Start koa2 server
 app.listen(SERVER_PORT, SERVER_HOST, () => {
   console.log(chalk.cyan(`Setup Koa2 Server on ${SERVER_HOST}:${SERVER_PORT}`))
 })

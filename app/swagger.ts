@@ -4,7 +4,7 @@ import {
   Info, ExternalDocs, Schema, BodyParameter, QueryParameter, Security, Tag,
 } from 'swagger-schema-official'
 import config from '../config'
-import * as Swagger from 'swagger2'
+import { Document } from 'swagger2'
 
 type SwaggerSpecWithoutPath = {
   info: Info,
@@ -211,10 +211,10 @@ const swaggerInfo: Info = {
 
 const { SERVER_HOST, SERVER_PORT } = config
 
-// see this specification document before edit
+// See this specification document before edit
 // https://swagger.io/specification/
 const options: SwaggerDocOptions = {
-  // options for the swagger docs
+  // Options for the swagger docs
   swaggerDefinition: {
     host: `${SERVER_HOST}:${SERVER_PORT}`,
     info: swaggerInfo,
@@ -223,11 +223,11 @@ const options: SwaggerDocOptions = {
     schemes: ['http'],
     definitions: swaggerDefinition,
   },
-  // path to the API documents
+  // Path to the API documents
   apis: [
     path.resolve(__dirname, './controllers/*.ts'),
   ],
 }
 
-// initialize swagger-jsdoc
-export const swaggerSpec: Swagger.Document = swaggerJsDoc(options)
+// Initialize swagger-jsdoc
+export const swaggerSpec: Document = swaggerJsDoc(options)
