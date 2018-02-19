@@ -10,6 +10,7 @@ import { createKoaServer } from 'routing-controllers'
 import * as swaggerInjector from 'swagger-injector'
 import { swaggerSpec } from './swagger'
 import { initializeMiddleware } from 'swagger-tools'
+import * as chalk from 'chalk'
 
 import config from '../config'
 const serverPort: number = parseInt(config.PORT, 10) || 3000
@@ -37,7 +38,6 @@ app.use(swaggerInjector.koa({
 
 // Initialize the Swagger Middleware
 initializeMiddleware(swaggerSpec, swaggerMiddleware => {
-  // Initialize the Swagger middleware (Examples below)
   // Initialize the remaining server components
 
   // Interpret Swagger resources and attach metadata to request
@@ -47,18 +47,24 @@ initializeMiddleware(swaggerSpec, swaggerMiddleware => {
   // Serve the Swagger documents and Swagger UI
   // http://localhost:3000/swagger => Swagger UI
   // http://localhost:3000/swagger-json => Swagger json document
-  app.use(c2k(swaggerMiddleware.swaggerUi({
-    swaggerUi: '/swagger-s',
-    // TODO:
-    swaggerUiDir: './node_modules/swagger-ui-dist',
-    // swaggerUiDir: path.resolve(__dirname, '../node_modules/swagger-ui-dist/'),
-    apiDocs: '/swagger-json',
-  })))
+  // app.use(c2k(swaggerMiddleware.swaggerUi({
+  //   swaggerUi: '/swagger-s',
+  //   // TODO:
+  //   // swaggerUiDir: './node_modules/swagger-ui-dist',
+  //   // swaggerUiDir: path.join(__dirname, '../node_modules', 'swagger-ui-dist'),
+  //   apiDocs: '/swagger-json',
+  //   // swaggerUiPrefix: '/_swagger_',
+  // })))
 
   // Validate Swagger requests
   app.use(c2k(swaggerMiddleware.swaggerValidator({ validateResponse: true })))
+  app.use(async (ctx, next) => {
+    console.log(ctx)
+    next()
+  })
 
   // Start server
   app.listen(serverPort)
   console.log(`Server running on port ${serverPort}`)
+  // console.log(chalk.cyan(`Setup Node.js Koa server on ${SERVER_HOST}:${SERVER_PORT}`))
 })
