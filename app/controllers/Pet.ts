@@ -54,25 +54,25 @@ export class PetController {
    */
   @Get('/pet/:petId')
   getOneById(@Param('petId') petId: number) {
-    // return {
-    //   id: petId,
-    //   category: {
-    //     id: 0,
-    //     name: 'string',
-    //   },
-    //   name: 'doggie',
-    //   photoUrls: [
-    //     'string',
-    //   ],
-    //   tags: [
-    //     {
-    //       id: 0,
-    //       name: 'string',
-    //     },
-    //   ],
-    //   status: 'available',
-    // }
-    return petId
+    return {
+      id: petId,
+      category: {
+        id: 0,
+        name: 'string',
+      },
+      name: 'doggie',
+      photoUrls: [
+        'string',
+      ],
+      tags: [
+        {
+          id: 0,
+          name: 'string',
+        },
+      ],
+      status: 'available',
+    }
+    // return petId
   }
 
   /**

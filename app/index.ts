@@ -1,70 +1,66 @@
 import './types'
 import 'reflect-metadata'
 import * as Koa from 'koa'
-import * as bodyParser from 'koa-bodyparser'
+import * as koaBodyParser from 'koa-bodyparser'
 import * as koaStatic from 'koa-static'
-import * as c2k from 'koa2-connect'
+import * as koaCors from 'koa-cors'
+import * as koaConvert from 'koa-convert'
 import * as path from 'path'
 import concurrencyLogger from 'concurrency-logger'
 import { createKoaServer } from 'routing-controllers'
-import * as swaggerInjector from 'swagger-injector'
 import { swaggerSpec } from './swagger'
-import { initializeMiddleware } from 'swagger-tools'
-import * as chalk from 'chalk'
-
+import chalk from 'chalk'
+import * as swagger2 from 'swagger2'
+import { ui, validate } from 'swagger2-koa'
 import config from '../config'
-const serverPort: number = parseInt(config.PORT, 10) || 3000
 
-// create koa server
+const { SERVER_PORT, SERVER_HOST } = config
+
+// Create koa server
 const app: Koa = createKoaServer({
   controllers: [path.resolve(__dirname, './controllers/*.ts')],
   middlewares: [path.resolve(__dirname, './middlewares/*.ts')],
   interceptors: [],
 })
 
-// use middlewares
-app.use(bodyParser())
+// Validate swagger specification first
+if (!swagger2.validateDocument(swaggerSpec)) {
+  throw Error(
+    `Swagger specification in JsDoc does not conform to the Swagger 2.0 schema.
+    Please see: https://swagger.io/specification/`,
+  )
+}
+
+// Use koa2 middlewares
+app.use(
+  koaConvert(koaCors({
+    // Configures the Access-Control-Allow-Origin CORS header.
+    origin: true,
+    // Set to true to pass the header, otherwise it is omitted.
+    credentials: true,
+    // Configures the Access-Control-Allow-Methods CORS header.
+    methods: ['GET', 'POST'],
+  })),
+)
+
+// About koa-bodyparser: https://www.npmjs.com/package/koa-bodyparser
+app.use(koaBodyParser())
+
 app.use(koaStatic(path.resolve(__dirname, '../static')))
+
+// Http logger middleware
 app.use(concurrencyLogger({ timestamp: true }))
 
-// swagger-ui documents
-// see more in `./types.ts`
-app.use(swaggerInjector.koa({
-  swagger: swaggerSpec,
-  // set swagger-ui document route
-  // `/swagger.json`
-  route: '/swagger',
-}))
+app.use(ui(swaggerSpec, '/swagger'))
 
-// Initialize the Swagger Middleware
-initializeMiddleware(swaggerSpec, swaggerMiddleware => {
-  // Initialize the remaining server components
+app.use(validate(swaggerSpec))
 
-  // Interpret Swagger resources and attach metadata to request
-  // must be first in swagger-tools middleware chain
-  app.use(c2k(swaggerMiddleware.swaggerMetadata()))
+// app.listen(serverPort)
+// console.log(`Server running on port ${serverPort}`)
 
-  // Serve the Swagger documents and Swagger UI
-  // http://localhost:3000/swagger => Swagger UI
-  // http://localhost:3000/swagger-json => Swagger json document
-  // app.use(c2k(swaggerMiddleware.swaggerUi({
-  //   swaggerUi: '/swagger-s',
-  //   // TODO:
-  //   // swaggerUiDir: './node_modules/swagger-ui-dist',
-  //   // swaggerUiDir: path.join(__dirname, '../node_modules', 'swagger-ui-dist'),
-  //   apiDocs: '/swagger-json',
-  //   // swaggerUiPrefix: '/_swagger_',
-  // })))
+// const { SERVER_PORT, SERVER_HOST } = config
 
-  // Validate Swagger requests
-  app.use(c2k(swaggerMiddleware.swaggerValidator({ validateResponse: true })))
-  app.use(async (ctx, next) => {
-    console.log(ctx)
-    next()
-  })
 
-  // Start server
-  app.listen(serverPort)
-  console.log(`Server running on port ${serverPort}`)
-  // console.log(chalk.cyan(`Setup Node.js Koa server on ${SERVER_HOST}:${SERVER_PORT}`))
+app.listen(SERVER_PORT, SERVER_HOST, () => {
+  console.log(chalk.cyan(`Setup Koa2 Server on ${SERVER_HOST}:${SERVER_PORT}`))
 })

@@ -1,9 +1,10 @@
 import * as swaggerJsDoc from 'swagger-jsdoc'
 import * as path from 'path'
 import {
-  Info, ExternalDocs, Schema, BodyParameter, QueryParameter, Security, Tag, Spec,
+  Info, ExternalDocs, Schema, BodyParameter, QueryParameter, Security, Tag,
 } from 'swagger-schema-official'
 import config from '../config'
+import * as Swagger from 'swagger2'
 
 type SwaggerSpecWithoutPath = {
   info: Info,
@@ -208,16 +209,14 @@ const swaggerInfo: Info = {
   },
 }
 
-const host: string = config.NODE_ENV === 'development'
-  ? `localhost:${config.PORT || 3000}`
-  : config.PUBLIC_URL
+const { SERVER_HOST, SERVER_PORT } = config
 
 // see this specification document before edit
 // https://swagger.io/specification/
 const options: SwaggerDocOptions = {
   // options for the swagger docs
   swaggerDefinition: {
-    host,
+    host: `${SERVER_HOST}:${SERVER_PORT}`,
     info: swaggerInfo,
     basePath: '/',
     tags: swaggerTags,
@@ -231,4 +230,4 @@ const options: SwaggerDocOptions = {
 }
 
 // initialize swagger-jsdoc
-export const swaggerSpec: Spec = swaggerJsDoc(options)
+export const swaggerSpec: Swagger.Document = swaggerJsDoc(options)
