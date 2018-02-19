@@ -21,7 +21,7 @@ const app: Koa = createKoaServer({
   // routePrefix: '/v1',
   controllers: [path.resolve(__dirname, './controllers/*.ts')],
   middlewares: [path.resolve(__dirname, './middlewares/*.ts')],
-  interceptors: [],
+  interceptors: [path.resolve(__dirname, './interceptors/*.ts')],
 })
 
 // Validate swagger specification first

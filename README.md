@@ -23,7 +23,7 @@ Starter kit of koajs, swagger, typescript to create the best RESTful nodejs serv
 - [ ] 完善 `Readme.md`
 - [ ] 添加适合的 `CI` 配合 `Docker` 给出最优的部署体验
 - [ ] 完善 `tslint`
-- [ ] 编写 `middleware` 和 `inspector` 的代码例子
+- [ ] 编写 `middleware` 和 `interceptors` 的代码例子
 - [ ] 在实际项目中使用
 
 ## License
