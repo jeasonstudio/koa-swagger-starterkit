@@ -7,6 +7,7 @@ WORKDIR /home/webapp/koa-swagger-server
 COPY package*.json ./
 
 # Install app dependencies
+# --registry=https://registry.npm.taobao.org
 RUN npm install
 
 # Bundle app source
