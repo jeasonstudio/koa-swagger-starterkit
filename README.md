@@ -17,7 +17,7 @@ Starter kit of koajs, swagger, typescript to create the best RESTful nodejs serv
 - [x] 优化路由的写法, 加入 `controller`, `DI` 等概念
 - [x] 加入 `swagger` 的支持, 包括参数检查, 文档生成
 - [x] 编写 `lanuch.json` 优化使用 `vscode` 时的调试体验
-- [ ] 添加对数据库的支持
+- [x] 添加对数据库的支持 demo
 - [ ] 添加更多的使用 `routing-controllers` 的例子
 - [ ] 添加单元测试, API 测试, 代码覆盖率
 - [x] 添加 `Dockerfile`
