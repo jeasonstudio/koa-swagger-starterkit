@@ -20,7 +20,7 @@ Starter kit of koajs, swagger, typescript to create the best RESTful nodejs serv
 - [ ] 添加对数据库的支持
 - [ ] 添加更多的使用 `routing-controllers` 的例子
 - [ ] 添加单元测试, API 测试, 代码覆盖率
-- [ ] 添加 `Dockerfile`
+- [x] 添加 `Dockerfile`
 - [ ] 完善 `Readme.md`
 - [ ] 添加适合的 `CI` 配合 `Docker` 给出最优的部署体验
 - [ ] 完善 `tslint`
