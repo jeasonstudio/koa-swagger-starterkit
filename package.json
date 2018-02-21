@@ -38,11 +38,13 @@
     "koa-cors": "0.0.16",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
+    "promise-mysql": "^3.2.0",
     "reflect-metadata": "^0.1.12",
     "routing-controllers": "^0.7.6",
     "swagger-jsdoc": "^1.9.7",
     "swagger2": "0.0.29",
-    "swagger2-koa": "0.0.43"
+    "swagger2-koa": "0.0.43",
+    "typedi": "^0.6.1"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.2",

@@ -1,9 +1,14 @@
-import { Controller, Param, Body, Get, Post, Delete, OnUndefined } from 'routing-controllers'
+import {
+  Controller, Param, Body, Get, Post, Delete, OnUndefined,
+} from 'routing-controllers'
 import { NotFoundError } from './Error'
 import { ID, Pet } from '../types'
+import { PoolConnection } from 'promise-mysql'
+import { DB } from '../service/database'
 
 @Controller('/pet')
 export class PetController {
+
   /**
    * @swagger
    * /pet:
@@ -55,7 +60,9 @@ export class PetController {
    *             $ref: '#/definitions/Pet'
    */
   @Get('')
-  getPets(): Pet[] {
+  async getPets(@DB() db: PoolConnection): Promise<Pet[]> {
+    const res = await db.query('SELECT * FROM class_score_manage.student_score')
+    console.log(res)
     return [{
       name: 'aa',
       photoUrls: ['111'],

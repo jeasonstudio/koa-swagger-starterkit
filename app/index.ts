@@ -6,14 +6,21 @@ import * as koaCors from 'koa-cors'
 import * as koaConvert from 'koa-convert'
 import * as path from 'path'
 import concurrencyLogger from 'concurrency-logger'
-import { createKoaServer } from 'routing-controllers'
+import { createKoaServer, useContainer } from 'routing-controllers'
 import { swaggerSpec } from './swagger'
 import chalk from 'chalk'
 import * as swagger2 from 'swagger2'
 import { ui, validate } from 'swagger2-koa'
+import { Container } from 'typedi'
 import config from '../config'
 
-const { SERVER_PORT, SERVER_HOST, SWAGGER_UI } = config
+const {
+  SERVER_PORT, SERVER_HOST, SWAGGER_UI,
+} = config
+
+// Use Dependency Injection
+// See more: https://github.com/typestack/typedi
+useContainer(Container)
 
 // Create koa server
 const app: Koa = createKoaServer({
